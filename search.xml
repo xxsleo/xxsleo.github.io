@@ -31,6 +31,33 @@
     
     
     <entry>
+      <title>Day05-59-螺旋矩阵II</title>
+      <link href="/2022/01/21/Algorithm/Day05-59-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II/"/>
+      <url>/2022/01/21/Algorithm/Day05-59-%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II/</url>
+      
+        <content type="html"><![CDATA[<h1 id="59-螺旋矩阵-II"><a href="#59-螺旋矩阵-II" class="headerlink" title="59.螺旋矩阵 II"></a>59.螺旋矩阵 II</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给你一个正整数 n ，生成一个包含 1 到 n2 所有元素，且元素按顺时针顺序螺旋排列的 n x n 正方形矩阵 matrix 。</p><h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p><img src="./img/day05-59.png" alt="day05-59"></p><h3 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：n = <span class="number">3</span></span><br><span class="line">输出：[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">8</span>,<span class="number">9</span>,<span class="number">4</span>],[<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>]]</span><br></pre></td></tr></table></figure><h3 id="示例2"><a href="#示例2" class="headerlink" title="示例2"></a>示例2</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：n = 1</span><br><span class="line">输出：[[1]]</span><br></pre></td></tr></table></figure><h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><ul><li>1 &lt;= n &lt;= 20</li></ul><h2 id="第一想法"><a href="#第一想法" class="headerlink" title="第一想法"></a>第一想法</h2><ul><li>循环每一次变化，由于太复杂，没有理清楚头绪，也没写出来</li></ul><h2 id="参考答案"><a href="#参考答案" class="headerlink" title="参考答案"></a>参考答案</h2><ul><li>因为自己没有写出来，所以看了很多答案，把觉得最清楚的写在这</li></ul><p><strong>思路</strong></p><ul><li>生成一个 n×n 空矩阵 mat，随后模拟整个向内环绕的填入过程：<br>  定义当前左右上下边界 l,r,t,b，初始值 num = 1，迭代终止值 tar = n * n；<br>  当 num &lt;= tar 时，始终按照 从左到右 从上到下 从右到左 从下到上 填入顺序循环，每次填入后：<pre><code>      执行 num += 1：得到下一个需要填入的数字；      更新边界：例如从左到右填完后，上边界 t += 1，相当于上边界向内缩 1。</code></pre>  使用num &lt;= tar而不是l &lt; r || t &lt; b作为迭代条件，是为了解决当n为奇数时，矩阵中心数字无法在迭代过程中被填充的问题。</li><li>最终返回mat</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[][] generateMatrix(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = n - <span class="number">1</span>, t = <span class="number">0</span>, b = n - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span>[][] mat = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line">        <span class="keyword">int</span> num = <span class="number">1</span>, tar = n * n;</span><br><span class="line">        <span class="keyword">while</span>(num &lt;= tar)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = l; i &lt;= r; i++) mat[t][i] = num++; <span class="comment">// left to right.</span></span><br><span class="line">            t++;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = t; i &lt;= b; i++) mat[i][r] = num++; <span class="comment">// top to bottom.</span></span><br><span class="line">            r--;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = r; i &gt;= l; i--) mat[b][i] = num++; <span class="comment">// right to left.</span></span><br><span class="line">            b--;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = b; i &gt;= t; i--) mat[i][l] = num++; <span class="comment">// bottom to top.</span></span><br><span class="line">            l++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> mat;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">作者：jyd</span><br><span class="line">链接：https:<span class="comment">//leetcode-cn.com/problems/spiral-matrix-ii/solution/spiral-matrix-ii-mo-ni-fa-she-ding-bian-jie-qing-x/</span></span><br><span class="line">来源：力扣（LeetCode）</span><br></pre></td></tr></table></figure><h2 id="感悟"><a href="#感悟" class="headerlink" title="感悟"></a>感悟</h2><ul><li>觉得题复杂，麻烦就不想自己动手写了，着急看答案</li><li>还是要多点耐心，慢慢理清头绪</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+          <category> LeetCode </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法刷题 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Day04-209-长度最小的子数组</title>
       <link href="/2022/01/20/Algorithm/Day04-209-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/"/>
       <url>/2022/01/20/Algorithm/Day04-209-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/</url>
