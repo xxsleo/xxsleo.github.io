@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://xxsleo.github.io/2022/02/16/JavaWeb/JavaWeb%E6%A0%B8%E5%BF%83/ServletStudent/</loc>
+    <lastmod>2022-03-04</lastmod>
+  </url>
+  <url>
     <loc>https://xxsleo.github.io/2022/02/15/ToolsUseing/Tomcat/Tomcat%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
     <lastmod>2022-03-04</lastmod>
   </url>
@@ -18,10 +22,6 @@
   </url>
   <url>
     <loc>https://xxsleo.github.io/2022/02/19/JavaWeb/JavaWeb%E6%A0%B8%E5%BF%83/Request&Response/</loc>
-    <lastmod>2022-03-04</lastmod>
-  </url>
-  <url>
-    <loc>https://xxsleo.github.io/2022/02/16/JavaWeb/JavaWeb%E6%A0%B8%E5%BF%83/ServletStudent/</loc>
     <lastmod>2022-03-04</lastmod>
   </url>
   <url>
