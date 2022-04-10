@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://xxsleo.github.io/2022/04/10/JavaWeb/Maven/POM%E6%96%87%E4%BB%B6%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3/</loc>
+    <lastmod>2022-04-10</lastmod>
+  </url>
+  <url>
     <loc>https://xxsleo.github.io/2022/02/16/JavaWeb/JavaWeb%E6%A0%B8%E5%BF%83/ServletStudent/</loc>
     <lastmod>2022-03-04</lastmod>
   </url>
